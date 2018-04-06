@@ -11,19 +11,10 @@ class Form extends Component{
         }
     }
 
-    handleUserInput( name, e ) {
-        switch( name ) {
-            case 'image_url':
-                this.setState({
-                    imageUrl: e
-                });
-                break;
-            
-            case 'product_name':
-                this.setState({
-                    productName: e
-                });
-        }
+    handleUserInput( e ) {
+        this.setState({
+            imageUrl: e
+        })
     }
 
     handleName( e ) {
@@ -38,6 +29,14 @@ class Form extends Component{
         })
     }
 
+    clearAll() {
+        this.setState({
+            imageUrl: '',
+            productName: '',
+            price: null
+        })
+    }
+
 
     render() {
         const { imageUrl, productName, price } = this.state
@@ -48,9 +47,9 @@ class Form extends Component{
                 <p>Product Name</p>
                 <input name="product_name" onChange={ e => this.handleName( e.target.value ) } value={ productName }/>
                 <p>Price</p>
-                <input name="price" onChange={ e => this.handleImage( e.target.value ) } value={ imageUrl }/>
+                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
                 <div className="button-box">
-                    <button>Cancel</button>
+                    <button onClick={ this.clearAll }>Cancel</button>
                     <button>Add to Inventory</button>
                 </div>
             </div>
