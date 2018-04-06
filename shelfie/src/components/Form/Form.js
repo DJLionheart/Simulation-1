@@ -7,11 +7,11 @@ class Form extends Component{
         this.state = {
             imageUrl: '',
             productName: '',
-            price: null
+            price: 0
         }
     }
 
-    handleUserInput( e ) {
+    handleImage( e ) {
         this.setState({
             imageUrl: e
         })
@@ -33,7 +33,7 @@ class Form extends Component{
         this.setState({
             imageUrl: '',
             productName: '',
-            price: null
+            price: 0
         })
     }
 
@@ -49,7 +49,7 @@ class Form extends Component{
                 <p>Price</p>
                 <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
                 <div className="button-box">
-                    <button onClick={ this.clearAll }>Cancel</button>
+                    <button onClick={ () => this.clearAll() }>Cancel</button>
                     <button>Add to Inventory</button>
                 </div>
             </div>
