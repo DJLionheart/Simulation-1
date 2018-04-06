@@ -1,0 +1,15 @@
+.shelfie-header {
+    margin-top: 0;
+    padding: 10px;
+    display: flex;
+
+    width: 100vw;
+    height: 60px;
+    background: #AB2A19;
+  }
+
+  .shelfie-header h1{
+    margin: 0;
+  }
+ 
+  

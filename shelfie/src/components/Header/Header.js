@@ -1,10 +1,13 @@
 import React from 'react';
 
+import logo from './logo.png';
+import './Header.css';
 
 function Header () {
     return (
-        <div>
-            <h1>Header</h1>
+        <div className='shelfie-header'>
+            <img src={ logo } alt="shelfie logo"/>
+            <h1>SHELFIE</h1>
         </div>
     )
 }
