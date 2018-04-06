@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 
 import './App.css';
 
-const serverUrl = 'localhost:4025/api/inventory'
+const serverUrl = '/api/inventory'
 
 
 
