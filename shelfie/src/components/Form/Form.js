@@ -14,9 +14,9 @@ class Form extends Component{
         }
     }
 
-    componentDidUpdate() {
-        this.props.getInventory();
-    }
+    // componentDidUpdate() {
+    //     this.props.getInventory();
+    // }
 
     handleImage( e ) {
         this.setState({
@@ -58,18 +58,18 @@ class Form extends Component{
 
 
     render() {
-        const { imageUrl, productName, price } = this.state
+        // const { img, name, price } = this.state
         return (
             <div>
                 <p>Image URL</p>
-                <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ imageUrl }/>
+                <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ this.state.img }/>
                 <p>Product Name</p>
-                <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ productName }/>
+                <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ this.state.name }/>
                 <p>Price</p>
-                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
+                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ this.state.price }/>
                 <div className="button-box">
                     <button onClick={ () => this.clearAll() }>Cancel</button>
-                    <button onClick={ () => this.addProduct }>Add to Inventory</button>
+                    <button onClick={ () => this.addProduct() }>Add to Inventory</button>
                 </div>
             </div>
         )
