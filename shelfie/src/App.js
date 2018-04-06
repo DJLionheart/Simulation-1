@@ -18,17 +18,20 @@ class App extends Component {
     this.state = {
       inventory: []
     }
+
+    this.getInventory = this.getInventory.bind(this);
   }
   
   componentDidMount() {
+    this.getInventory();
+  }
+
+  getInventory() {
     axios.get(invUrl).then( res => {
-      console.log(res);
-      
       this.setState({
         inventory: res.data
       })
     })
-
   }
 
   render() {
@@ -37,7 +40,7 @@ class App extends Component {
       <div>
         <Header />
         <Dashboard inventory={ inventory }/>
-        <Form />
+        <Form getInventory={ this.getInventory }/>
       </div>
     );
   }
