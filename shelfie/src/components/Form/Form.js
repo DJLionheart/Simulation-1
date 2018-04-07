@@ -8,8 +8,8 @@ class Form extends Component{
     constructor() {
         super();
         this.state = {
-            imageUrl: '',
-            productName: '',
+            img: '',
+            name: '',
             price: 0
         }
     }
@@ -20,13 +20,13 @@ class Form extends Component{
 
     handleImage( e ) {
         this.setState({
-            imageUrl: e
+            img: e
         })
     }
 
     handleName( e ) {
         this.setState({
-            productName: e
+            name: e
         })
     }
 
@@ -46,8 +46,11 @@ class Form extends Component{
 
     addProduct() {
         const { name, img, price } = this.state;
+        const productToSend = {name: name, img: img, price: price}
+        console.log(productToSend);
+        
 
-        axios.post(productUrl, {name: name, img: img, price: price}).then( res => {
+        axios.post(productUrl, productToSend).then( res => {
             this.setState({
                 name: '',
                 img: '',
