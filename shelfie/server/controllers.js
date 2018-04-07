@@ -23,6 +23,17 @@ module.exports = {
         // res.status(200).send('It worked!!! YUSSSS!');
         // console.log('Thine inventory hath been sent!');
         
+    },
+
+    // updateProduct:
+
+    deleteProduct: ( req, res, next ) => {
+        const db = req.app.get('db');
+
+        db.delete_product( req.params.id )
+            .then( () => res.status(200).send() )
+            .catch( err => res.status(500).send(err));
+
     }
 
 

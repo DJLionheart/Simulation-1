@@ -8,6 +8,8 @@ function Header () {
         <div className='shelfie-header'>
             <img src={ logo } alt="shelfie logo"/>
             <h1>SHELFIE</h1>
+            <button>Dashboard</button>
+            <button>Add Inventory</button>
         </div>
     )
 }

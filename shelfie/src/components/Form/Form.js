@@ -10,13 +10,27 @@ class Form extends Component{
         this.state = {
             img: '',
             name: '',
-            price: 0
+            price: 0,
+            productId: null,
+            editProduct: false
         }
     }
 
-    // componentDidUpdate() {
-    //     this.props.getInventory();
-    // }
+    componentDidUpdate(prevProps) {
+        if( prevProps.selectedProduct !== this.props.selectedProduct) {
+            const { selectedProduct } = this.props;
+
+            this.setState({
+                img: selectedProduct.img,
+                name: selectedProduct.name,
+                price: selectedProduct.price,
+                productId: selectedProduct.id,
+                editProduct: true
+
+            })
+        }
+        
+    }
 
     handleImage( e ) {
         this.setState({
@@ -44,35 +58,40 @@ class Form extends Component{
         })
     }
 
+    
+
     addProduct() {
         const { name, img, price } = this.state;
-        const productToSend = {name: name, img: img, price: price}
-        console.log(productToSend);
         
-
-        axios.post(productUrl, productToSend).then( res => {
-            this.setState({
-                name: '',
-                img: '',
-                price: 0
-            })
+        axios.post(productUrl, {name: name, img: img, price: price}).then( res => {
+            this.clearAll();
         })
     }
 
 
     render() {
-        // const { img, name, price } = this.state
+        const { img, name, price, productId, editProduct } = this.state
+
+        const condBtn = {
+            saveBtn: {text: 'Save Changes', func: this.addProduct() },
+            addBtn: {text: 'Add to Inventory', func: this.addProduct() }
+        }
+
+        let formBtn = {text: '', func: null}
+
+        ( editProduct ) ? formBtn = condBtn.saveBtn : formBtn = condBtn.addBtn;
+
         return (
             <div>
                 <p>Image URL</p>
-                <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ this.state.img }/>
+                <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ img }/>
                 <p>Product Name</p>
-                <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ this.state.name }/>
+                <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ name }/>
                 <p>Price</p>
-                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ this.state.price }/>
+                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
                 <div className="button-box">
                     <button onClick={ () => this.clearAll() }>Cancel</button>
-                    <button onClick={ () => this.addProduct() }>Add to Inventory</button>
+                    <button onClick={ () => formBtn.func() }>{ formBtn.text }</button>
                 </div>
             </div>
         )
