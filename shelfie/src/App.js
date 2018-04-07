@@ -50,7 +50,8 @@ class App extends Component {
       <div>
         <Header />
         <Dashboard inventory={ inventory }
-        getInventory={ this.getInventory }/>
+        getInventory={ this.getInventory }
+        selectProduct={ this.selectProduct }/>
         <Form getInventory={ this.getInventory }
         selectedProduct={ selectedProduct }/>
       </div>

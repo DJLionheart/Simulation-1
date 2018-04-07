@@ -3,7 +3,7 @@ import React from 'react';
 import './Product.css'
 
 function Product ( props ) {
-    const { product, deleteProduct } = props;
+    const { product, deleteProduct, selectProduct } = props;
 
     return (
         <div className="product-details">
@@ -11,7 +11,7 @@ function Product ( props ) {
             <h2>{ product.name }</h2>
             <h3>Price: { product.price }</h3>
             <button onClick={ () => deleteProduct( product.id )}>Delete</button>
-            <button>Edit</button>
+            <button onClick={ () => selectProduct( product )}>Edit</button>
 
         </div>
     )

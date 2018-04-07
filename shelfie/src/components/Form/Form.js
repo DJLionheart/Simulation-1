@@ -54,8 +54,10 @@ class Form extends Component{
         this.setState({
             name: '',
             img: '',
-            price: 0
+            price: 0,
+            editProduct: false
         })
+        this.props.getInventory()
     }
 
     
@@ -70,16 +72,7 @@ class Form extends Component{
 
 
     render() {
-        const { img, name, price, productId, editProduct } = this.state
-
-        const condBtn = {
-            saveBtn: {text: 'Save Changes', func: this.addProduct() },
-            addBtn: {text: 'Add to Inventory', func: this.addProduct() }
-        }
-
-        let formBtn = {text: '', func: null}
-
-        ( editProduct ) ? formBtn = condBtn.saveBtn : formBtn = condBtn.addBtn;
+        const { img, name, price, editProduct } = this.state
 
         return (
             <div>
@@ -91,7 +84,11 @@ class Form extends Component{
                 <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
                 <div className="button-box">
                     <button onClick={ () => this.clearAll() }>Cancel</button>
-                    <button onClick={ () => formBtn.func() }>{ formBtn.text }</button>
+                    {
+                        editProduct
+                            ? <button onClick={ () => this.addProduct() }>Save Changes</button>
+                            : <button onClick={ () => this.addProduct() }>Add to Inventory</button>
+                    }
                 </div>
             </div>
         )
