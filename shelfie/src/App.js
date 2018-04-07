@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
@@ -47,6 +48,7 @@ class App extends Component {
     const { inventory, selectedProduct } = this.state;
     
     return (
+
       <div>
         <Header />
         <Dashboard inventory={ inventory }

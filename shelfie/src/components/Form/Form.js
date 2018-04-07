@@ -60,8 +60,6 @@ class Form extends Component{
         this.props.getInventory()
     }
 
-    
-
     addProduct() {
         const { name, img, price } = this.state;
         
@@ -70,9 +68,17 @@ class Form extends Component{
         })
     }
 
+    saveChanges( id ) {
+        const { name, img, price } = this.state;
+
+        axios.put(`${productUrl}/${ id }`, {name: name, img: img, price: price}).then( res => {
+            this.clearAll();
+        })
+    }
+
 
     render() {
-        const { img, name, price, editProduct } = this.state
+        const { img, name, price, editProduct, productId } = this.state
 
         return (
             <div>
@@ -86,7 +92,7 @@ class Form extends Component{
                     <button onClick={ () => this.clearAll() }>Cancel</button>
                     {
                         editProduct
-                            ? <button onClick={ () => this.addProduct() }>Save Changes</button>
+                            ? <button onClick={ () => this.saveChanges( productId ) }>Save Changes</button>
                             : <button onClick={ () => this.addProduct() }>Add to Inventory</button>
                     }
                 </div>

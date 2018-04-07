@@ -25,7 +25,15 @@ module.exports = {
         
     },
 
-    // updateProduct:
+    updateProduct: ( req, res, next ) => {
+        const db = req.app.get('db');
+        const { name, price, img } = req.body;
+        const { id } = req.params;
+
+        db.update_product( name, price, img, id )
+            .then( () => res.status(200).send() )
+            .catch( (err) => res.status(500).send(err) )
+    },
 
     deleteProduct: ( req, res, next ) => {
         const db = req.app.get('db');
