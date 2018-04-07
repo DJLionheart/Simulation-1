@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { HashRouter, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
@@ -48,17 +48,18 @@ class App extends Component {
     const { inventory, selectedProduct } = this.state;
     
     return (
+      <HashRouter>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path='/' render={ (props) => <Dashboard inventory={ inventory } getInventory={ this.getInventory } selectProduct={ this.selectProduct }/> } />
+            <Route path='/form' render={ (props) => <Form getInventory={ this.getInventory }
+            selectedProduct={ selectedProduct }/> }/>
+          </Switch>
+        </div>
+      </HashRouter>
 
-      <div>
-        <Header />
-        <Dashboard inventory={ inventory }
-        getInventory={ this.getInventory }
-        selectProduct={ this.selectProduct }/>
-        <Form getInventory={ this.getInventory }
-        selectedProduct={ selectedProduct }/>
-      </div>
     );
   }
 }
-
 export default App;

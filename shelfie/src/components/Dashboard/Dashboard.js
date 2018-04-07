@@ -27,6 +27,7 @@ class Dashboard extends Component{
     }
 
     render() {
+        
         const { inventory, selectProduct } = this.props;
 
         const products = inventory.map( (product, i) => {

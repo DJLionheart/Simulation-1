@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Product.css'
 
@@ -11,8 +12,7 @@ function Product ( props ) {
             <h2>{ product.name }</h2>
             <h3>Price: { product.price }</h3>
             <button onClick={ () => deleteProduct( product.id )}>Delete</button>
-            <button onClick={ () => selectProduct( product )}>Edit</button>
-
+            <Link to='/form'><button onClick={ () => selectProduct( product )}>Edit</button></Link>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const productUrl = '/api/product'
 
@@ -17,19 +18,17 @@ class Form extends Component{
     }
 
     componentDidUpdate(prevProps) {
-        if( prevProps.selectedProduct !== this.props.selectedProduct) {
-            const { selectedProduct } = this.props;
-
+        const { selectedProduct } = this.props;
+        if( prevProps.selectedProduct !== selectedProduct) {
+        
             this.setState({
                 img: selectedProduct.img,
                 name: selectedProduct.name,
                 price: selectedProduct.price,
                 productId: selectedProduct.id,
                 editProduct: true
-
             })
         }
-        
     }
 
     handleImage( e ) {
@@ -89,11 +88,11 @@ class Form extends Component{
                 <p>Price</p>
                 <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
                 <div className="button-box">
-                    <button onClick={ () => this.clearAll() }>Cancel</button>
+                    <Link to='/'><button onClick={ () => this.clearAll() }>Cancel</button></Link>
                     {
                         editProduct
-                            ? <button onClick={ () => this.saveChanges( productId ) }>Save Changes</button>
-                            : <button onClick={ () => this.addProduct() }>Add to Inventory</button>
+                            ? <Link to='/'><button onClick={ () => this.saveChanges( productId ) }>Save Changes</button></Link>
+                            : <Link to='/'><button onClick={ () => this.addProduct() }>Add to Inventory</button></Link>
                     }
                 </div>
             </div>
