@@ -18,11 +18,12 @@ class App extends Component {
     super();
     this.state = {
       inventory: [],
-      selectedProduct: {}
+      selectedProduct: null
     }
 
     this.getInventory = this.getInventory.bind(this);
     this.selectProduct = this.selectProduct.bind(this);
+    this.clearSelected = this.clearSelected.bind(this);
   }
   
   componentDidMount() {
@@ -41,7 +42,12 @@ class App extends Component {
     this.setState({
       selectedProduct: product
     })
+  }
 
+  clearSelected() {
+    this.setState({
+      selectedProduct: null
+    })
   }
 
   render() {
@@ -50,11 +56,12 @@ class App extends Component {
     return (
       <HashRouter>
         <div>
-          <Header />
+          <Header clearSelected={ this.clearSelected }/>
           <Switch>
-            <Route exact path='/' render={ (props) => <Dashboard inventory={ inventory } getInventory={ this.getInventory } selectProduct={ this.selectProduct }/> } />
-            <Route path='/form' render={ (props) => <Form getInventory={ this.getInventory }
-            selectedProduct={ selectedProduct }/> }/>
+            <Route exact path='/' render={ (props) => <Dashboard inventory={ inventory } getInventory={ this.getInventory } selectProduct={ this.selectProduct } props={ props }/> } />
+            <Route path='/form' render={ (props) => <Form getInventory={ this.getInventory } selectedProduct={ selectedProduct } clearSelected={ this.clearSelected } /> }/>
+            <Route path='/form/:id' render={ (props) => <Form props={ props } getInventory={ this.getInventory }
+            selectedProduct={ selectedProduct } clearSelected={ this.clearSelected }/> }/>       
           </Switch>
         </div>
       </HashRouter>

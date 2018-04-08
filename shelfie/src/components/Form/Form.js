@@ -6,8 +6,8 @@ const productUrl = '/api/product'
 
 
 class Form extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             img: '',
             name: '',
@@ -15,6 +15,19 @@ class Form extends Component{
             productId: null,
             editProduct: false
         }
+    }
+
+    componentDidMount(props) {
+        const { selectedProduct } = this.props;
+        (selectedProduct !== null ) ? this.setState({
+                img: selectedProduct.img,
+                name: selectedProduct.name,
+                price: selectedProduct.price,
+                productId: selectedProduct.id,
+                editProduct: true
+            })
+            : null
+        
     }
 
     componentDidUpdate(prevProps) {

@@ -12,7 +12,7 @@ function Product ( props ) {
             <h2>{ product.name }</h2>
             <h3>Price: { product.price }</h3>
             <button onClick={ () => deleteProduct( product.id )}>Delete</button>
-            <Link to='/form'><button onClick={ () => selectProduct( product )}>Edit</button></Link>
+            <Link to={`/form/${ product.id }`}><button onClick={ () => selectProduct( product )}>Edit</button></Link>
         </div>
     )
 }
