@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 import Product from '../Product/Product';
+import './Dashboard.css'
 
 
 class Dashboard extends Component{
@@ -36,8 +37,7 @@ class Dashboard extends Component{
             )
         })
         return (
-            <div>
-                <h1>Dashboard</h1>
+            <div className="dashboard-main">
                 { products }
             </div>
         )

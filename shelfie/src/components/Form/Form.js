@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import placeholder from '../Product/placeholder.png'
+import './Form.css'
+
 const productUrl = '/api/product'
 
 
@@ -19,7 +22,7 @@ class Form extends Component{
 
     componentDidMount(props) {
         const { selectedProduct } = this.props;
-        (selectedProduct !== null ) ? this.setState({
+        ( selectedProduct ) ? this.setState({
                 img: selectedProduct.img,
                 name: selectedProduct.name,
                 price: selectedProduct.price,
@@ -93,14 +96,21 @@ class Form extends Component{
         const { img, name, price, editProduct, productId } = this.state
 
         return (
-            <div>
-                <p>Image URL</p>
-                <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ img }/>
-                <p>Product Name</p>
-                <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ name }/>
-                <p>Price</p>
-                <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
-                <div className="button-box">
+            <div className="form-main">
+            {
+                ( img )
+                    ? <img src={ img } alt="product"/>
+                    : <img src={ placeholder } alt="placeholder"/>
+            }
+                <div className="form-fields">
+                    <h3>Image URL:</h3>
+                    <input name="img" onChange={ e => this.handleImage( e.target.value ) } value={ img }/>
+                    <h3>Product Name:</h3>
+                    <input name="name" onChange={ e => this.handleName( e.target.value ) } value={ name }/>
+                    <h3>Price:</h3>
+                    <input name="price" onChange={ e => this.handlePrice( e.target.value ) } value={ price }/>
+                </div>
+                <div className="form-btn-box">
                     <Link to='/'><button onClick={ () => this.clearAll() }>Cancel</button></Link>
                     {
                         editProduct

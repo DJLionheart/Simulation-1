@@ -9,8 +9,10 @@ function Header (props) {
         <div className='shelfie-header'>
             <img src={ logo } alt="shelfie logo"/>
             <h1>SHELFIE</h1>
-            <Link to='/'><button onClick={ () => props.clearSelected() }>Dashboard</button></Link>
-            <Link to='/form'><button onClick={ () => props.clearSelected() }>Add Inventory</button></Link>
+            <div className="nav-btn-box">
+                <Link to='/'><button onClick={ () => props.clearSelected() }>Dashboard</button></Link>
+                <Link to='/form'><button onClick={ () => props.clearSelected() }>Add Inventory</button></Link>
+            </div>
         </div>
     )
 }
