@@ -22,6 +22,7 @@ class Form extends Component{
 
     componentDidMount(props) {
         const { selectedProduct } = this.props;
+        
         ( selectedProduct ) ? this.setState({
                 img: selectedProduct.img,
                 name: selectedProduct.name,
@@ -29,7 +30,13 @@ class Form extends Component{
                 productId: selectedProduct.id,
                 editProduct: true
             })
-            : null
+            : this.setState({
+                img: '',
+                name: '',
+                price: 0,
+                productId: null,
+                editProduct: false
+            })
         
     }
 
